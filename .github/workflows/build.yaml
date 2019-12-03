@@ -8,11 +8,19 @@ jobs:
     - uses: actions/checkout@v1
     - name: build image
       run: docker build -f Dockerfile -t gcr.io/cpsg-ai-kubeflow/hello-world:0.1 .
-    - name: push image
-      run: docker images
+    - uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{secrets.PROJECT_ID}}
+          APPLICATION_CREDENTIALS: ${{secrets.APPLICATION_CREDENTIALS}}
+        with:
+          args: auth configure-docker
+    - name: push image to registry
+      run: docker push gcr.io/cpsg-ai-kubeflow/hello-world:0.1
     - name: get scanr
       run: curl https://storage.cloud.google.com/scanr/v0.0.1/scanr > /home/runner/scanr
     - name: change scanr permissions
       run: chmod +x /home/runner/scanr 
     - name: run scanr
+      env:
+        APPLICATION_CREDENTIALS: ${{secrets.APPLICATION_CREDENTIALS}}
       run: /home/runner/scanr image --image gcr.io/cpsg-ai-kubeflow/hello-world@sha256:72a0d02c49cf8dc4657b26cbf45479ea68e80a84e36eab639e5c23fa7f47593c --project {{ .secrets.PROJECT }}
