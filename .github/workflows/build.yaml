@@ -6,7 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    
     - name: build docker image
       runs: docker build -f Dockerfile -t gcr.io/cpsg-ai-kubeflow/hello-world:0.1 .
     - uses: actions-hub/gcloud@master
