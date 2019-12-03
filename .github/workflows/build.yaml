@@ -13,7 +13,7 @@ jobs:
         PROJECT_ID: ${{secrets.PROJECT_ID}}
         APPLICATION_CREDENTIALS: ${{secrets.APPLICATION_CREDENTIALS}}
       with:
-        args: auth configure-docker --quiet --project {{ .secrets.PROJECT_ID }}
+        args: auth configure-docker --quiet
     - name: push image to registry
       run: docker push gcr.io/cpsg-ai-kubeflow/hello-world:0.1
     - name: get scanr
