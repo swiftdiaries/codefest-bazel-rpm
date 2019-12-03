@@ -15,6 +15,6 @@ jobs:
     #   with:
     #     args: docker -- push gcr.io/cpsg-ai-kubeflow/hello-world:0.1
     - name: get scanr
-      run: wget https://storage.cloud.google.com/scanr/scanr
+      run: wget -O /home/runner/scanr https://storage.cloud.google.com/scanr/scanr
     - name: run scanr
       run: scanr image --image "gcr.io/cpsg-ai-kubeflow/hello-world:0.1" --project {{ .secrets.PROJECT }}
