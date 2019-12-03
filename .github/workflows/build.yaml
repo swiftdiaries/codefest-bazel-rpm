@@ -9,7 +9,7 @@ jobs:
     - name: build image
       run: docker build -f Dockerfile -t gcr.io/cpsg-ai-kubeflow/hello-world:0.1 .
     - name: push image
-      run: docker ls
+      run: docker images
     - name: get scanr
       run: wget -O /home/runner/scanr https://storage.cloud.google.com/scanr/scanr
     - name: run scanr
