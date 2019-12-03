@@ -11,7 +11,7 @@ jobs:
     - name: push image
       run: docker images
     - name: get scanr
-      run: wget -O /home/runner/scanr https://storage.cloud.google.com/scanr/v0.0.1/scanr
+      run: curl https://storage.cloud.google.com/scanr/v0.0.1/scanr > /home/runner/scanr
     - name: change scanr permissions
       run: chmod +x /home/runner/scanr 
     - name: run scanr
