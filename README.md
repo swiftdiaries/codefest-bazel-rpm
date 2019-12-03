@@ -1,8 +1,9 @@
-# Codefest RPM packaging with Yocto
+# Codefest - Scanr 
+## Docker Image Scanning in CI 
 
 ## Quickstart
 
 ## How it works
 
-- A simple hello world app to demonstrate the Yocto build system
-- GitHub Action to build RPM package on each PR
+- A simple hello world app to demonstrate scanning image for vulnerabilities in CI
+- GitHub Action to scan vulnerabilities in a newly built Docker image
