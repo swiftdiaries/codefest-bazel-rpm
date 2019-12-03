@@ -11,7 +11,7 @@ jobs:
     - uses: actions-hub/gcloud@master
       env:
         PROJECT_ID: ${{secrets.PROJECT_ID}}
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.APPLICATION_CREDENTIALS }}
         CLI: gcloud
       with:
         args: docker -- push gcr.io/cpsg-ai-kubeflow/hello-world:0.1
