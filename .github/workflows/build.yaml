@@ -15,4 +15,4 @@ jobs:
     - name: change scanr permissions
       run: chmod +x /home/runner/scanr 
     - name: run scanr
-      run: /home/runner/scanr image --image gcr.io/cpsg-ai-kubeflow/hello-world@sha256:72a0d02c49cf8dc4657b26cbf45479ea68e80a84e36eab639e5c23fa7f47593c --project {{ .secrets.PROJECT }}
+      run: /home/runner/scanr image --image gcr.io/cpsg-ai-kubeflow/hello-world:0.1 --project {{ .secrets.PROJECT }}
