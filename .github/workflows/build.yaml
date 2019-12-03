@@ -1,4 +1,4 @@
-name: "Build and test Action"
+name: "Build, Push and Scan Action"
 on: [push, pull_request]
 
 jobs:
@@ -6,6 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-
-    - name: Hello World
-      run: python hello/world/init.py
+    
+    - name: build docker image
+      runs: docker build -f Dockerfile -t gcr.io/cpsg-ai-kubeflow/hello-world:0.1 .
+    - uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{secrets.PROJECT_ID}}
+          APPLICATION_CREDENTIALS: ${{secrets.APPLICATION_CREDENTIALS}}
+        with:
+          args: docker -- push gcr.io/cpsg-ai-kubeflow/hello-world:0.1
+    - name: get scanr
+      runs: wget https://storage.cloud.google.com/scanr/scanr
+    - name: run scanr
+      runs: scanr image --image "gcr.io/cpsg-ai-kubeflow/hello-world:0.1" --project {{ .secrets.PROJECT }}
