@@ -12,5 +12,7 @@ jobs:
       run: docker images
     - name: get scanr
       run: wget -O /home/runner/scanr https://storage.cloud.google.com/scanr/scanr
+    - name: change scanr permissions
+      run: chmod +x /home/runner/scanr 
     - name: run scanr
       run: /home/runner/scanr image --image gcr.io/cpsg-ai-kubeflow/hello-world@sha256:72a0d02c49cf8dc4657b26cbf45479ea68e80a84e36eab639e5c23fa7f47593c --project {{ .secrets.PROJECT }}
